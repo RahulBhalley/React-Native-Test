@@ -4,39 +4,56 @@ A premium boilerplate setup for high-performance cross-platform development. Bui
 
 ---
 
-## 🛠 Features
+## 🛠 Initial Setup & Environment
 
-- **TypeScript** - Core type-safety out of the box.
-- **Modern CLI** - Using `@react-native-community/cli`.
-- **Pre-configured** - Optimized for both iOS and Android.
-- **Fast Refresh** - Real-time development experience.
+This project requires a specific environment configuration to run correctly on both iOS and Android.
+
+### 1. Install Prerequisites (macOS)
+Run the following commands to install the necessary tools:
+```bash
+# File watcher and iOS dependency manager
+brew install watchman
+sudo gem install cocoapods
+
+# Java Development Kit (Required for Android)
+brew install openjdk@17
+```
+
+### 2. Configure Environment Variables
+Add these to your shell profile (e.g., `~/.zshrc` or `~/.bash_profile`):
+```bash
+export JAVA_HOME="/opt/homebrew/opt/openjdk@17"
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
+```
+
+### 3. Install Project Dependencies
+```bash
+# Install JavaScript packages
+npm install
+
+# Install iOS native dependencies
+cd ios && bundle install && bundle exec pod install && cd ..
+```
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Running the Application
 
-### 1. Prerequisites
-Ensure you have the following installed:
-- [Node.js](https://nodejs.org/) (v18+)
-- [Watchman](https://facebook.github.io/watchman/)
-- [Ruby](https://www.ruby-lang.org/) (for CocoaPods)
-- [JDK 17](https://openjdk.org/) (for Android)
-
-### 2. Installation
-Install dependencies and pods:
+### Metro Bundler
+First, start the JavaScript bundler:
 ```bash
-npm install
-cd ios && bundle exec pod install && cd ..
+npm start
 ```
 
-### 3. Run the Application
-
-#### **iOS**
+### iOS
+To launch on a specific simulator (e.g., iPhone 16 Pro):
 ```bash
-npx react-native run-ios
+npx react-native run-ios --simulator "iPhone 16 Pro"
 ```
 
-#### **Android**
+### Android
+Ensure an emulator is running (or a device is connected via ADB):
 ```bash
 npx react-native run-android
 ```
@@ -58,9 +75,9 @@ npx react-native run-android
 
 ## 💎 Development Tips
 
-- **Metro Bundler**: Keep it running in the background (`npm start`).
-- **Debugging**: Use `Cmd + D` (iOS) or `Cmd + M` (Android) to open the Dev Menu.
-- **Type Checking**: Run `tsc` to verify TypeScript integrity.
+- **Dev Menu**: Use `Cmd + D` (iOS) or `Cmd + M` (Android) to open the Dev Menu.
+- **Fast Refresh**: UI updates automatically on save.
+- **Doctor Check**: Run `npx react-native doctor` to debug environment issues.
 
 ---
 
@@ -69,4 +86,5 @@ This project is open-source and available under the [MIT License](LICENSE).
 
 ---
 *Created with ❤️ by Antigravity*
+
 
